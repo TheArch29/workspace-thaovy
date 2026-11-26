@@ -1,0 +1,159 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 36px);
+  align-items: start;
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.photoButton {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.landscape {
+  aspect-ratio: 4 / 3;
+}
+
+.portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.photoButton:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photoButton:hover .image {
+  transform: scale(1.03);
+}
+
+.captionBar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.caption {
+  font-size: 0.94rem;
+  color: var(--text-primary);
+}
+
+.camera {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background-color: hsla(24, 24%, 8%, 0.9);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal {
+  position: relative;
+  width: min(1040px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background-color: hsla(36, 33%, 97%, 0.14);
+  color: hsl(36, 33%, 97%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+}
+
+.closeBtn:hover {
+  background-color: hsla(36, 33%, 97%, 0.28);
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: min(74vh, 680px);
+}
+
+.stageImage {
+  object-fit: contain;
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: hsl(36, 33%, 95%);
+}
+
+.modalCaption {
+  font-size: 0.98rem;
+}
+
+.modalMeta {
+  font-size: 0.82rem;
+  color: hsla(36, 20%, 88%, 0.72);
+  margin-top: 2px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+}
+
+.navBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid hsla(36, 33%, 97%, 0.25);
+  color: hsl(36, 33%, 97%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+}
+
+.navBtn:hover {
+  background-color: hsla(36, 33%, 97%, 0.16);
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
