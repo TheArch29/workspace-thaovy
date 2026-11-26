@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { Camera, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import type { PhotoItem } from "@/data/albums";
@@ -40,7 +41,14 @@ export function PhotoLightbox({ photos }: PhotoLightboxProps) {
     <>
       <div className={styles.grid}>
         {photos.map((photo, index) => (
-          <figure key={photo.id} className={styles.figure}>
+          <motion.figure
+            key={photo.id}
+            className={styles.figure}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.14 }}
+            transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
             <button
               type="button"
               id={`photo-trigger-${photo.id}`}
@@ -65,73 +73,86 @@ export function PhotoLightbox({ photos }: PhotoLightboxProps) {
                 {photo.camera}
               </span>
             </figcaption>
-          </figure>
+          </motion.figure>
         ))}
       </div>
 
-      {activePhoto && (
-        <div
-          className={styles.overlay}
-          role="dialog"
-          aria-modal="true"
-          aria-label={activePhoto.alt}
-          onClick={close}
-        >
-          <div className={styles.modal} onClick={(event) => event.stopPropagation()}>
-            <button
-              type="button"
-              id="lightbox-close"
-              className={styles.closeBtn}
-              onClick={close}
-              aria-label="Đóng trình xem ảnh"
+      <AnimatePresence>
+        {activePhoto && (
+          <motion.div
+            className={styles.overlay}
+            role="dialog"
+            aria-modal="true"
+            aria-label={activePhoto.alt}
+            onClick={close}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.24 }}
+          >
+            <motion.div
+              className={styles.modal}
+              onClick={(event) => event.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.94, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 8 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             >
-              <X size={22} />
-            </button>
+              <button
+                type="button"
+                id="lightbox-close"
+                className={styles.closeBtn}
+                onClick={close}
+                aria-label="Đóng trình xem ảnh"
+              >
+                <X size={22} />
+              </button>
 
-            <div className={styles.stage}>
-              <Image
-                src={activePhoto.src}
-                alt={activePhoto.alt}
-                fill
-                sizes="92vw"
-                className={styles.stageImage}
-                priority
-              />
-            </div>
-
-            <div className={styles.modalFooter}>
-              <div>
-                <p className={styles.modalCaption}>{activePhoto.caption}</p>
-                <p className={styles.modalMeta}>
-                  {activePhoto.camera} · {(activeIndex ?? 0) + 1}/{photos.length}
-                </p>
+              <div className={styles.stage}>
+                <Image
+                  src={activePhoto.src}
+                  alt={activePhoto.alt}
+                  fill
+                  sizes="92vw"
+                  className={styles.stageImage}
+                  priority
+                />
               </div>
-              {photos.length > 1 && (
-                <div className={styles.controls}>
-                  <button
-                    type="button"
-                    id="lightbox-prev"
-                    className={styles.navBtn}
-                    onClick={showPrev}
-                    aria-label="Ảnh trước"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    type="button"
-                    id="lightbox-next"
-                    className={styles.navBtn}
-                    onClick={showNext}
-                    aria-label="Ảnh tiếp theo"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
+
+              <div className={styles.modalFooter}>
+                <div>
+                  <p className={styles.modalCaption}>{activePhoto.caption}</p>
+                  <p className={styles.modalMeta}>
+                    {activePhoto.camera} · {(activeIndex ?? 0) + 1}/{photos.length}
+                  </p>
                 </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+                {photos.length > 1 && (
+                  <div className={styles.controls}>
+                    <button
+                      type="button"
+                      id="lightbox-prev"
+                      className={styles.navBtn}
+                      onClick={showPrev}
+                      aria-label="Ảnh trước"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+                    <button
+                      type="button"
+                      id="lightbox-next"
+                      className={styles.navBtn}
+                      onClick={showNext}
+                      aria-label="Ảnh tiếp theo"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

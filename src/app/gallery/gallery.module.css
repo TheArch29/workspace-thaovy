@@ -1,41 +1,54 @@
 .page {
-  padding: clamp(44px, 6vw, 80px) 0 24px;
+  padding: clamp(40px, 6vw, 72px) 0 24px;
 }
 
 .header {
   max-width: 62ch;
-  margin-bottom: clamp(36px, 5vw, 60px);
+  margin-bottom: clamp(32px, 5vw, 52px);
+}
+
+.bow {
+  color: var(--accent-rose);
+  margin-bottom: 8px;
 }
 
 .title {
-  margin-top: 10px;
-  font-size: clamp(2.4rem, 4.8vw, 3.6rem);
+  margin-top: 8px;
+  font-size: clamp(2.35rem, 4.6vw, 3.5rem);
 }
 
 .lead {
-  margin-top: 14px;
-  font-size: 1.03rem;
+  margin-top: 12px;
+  font-size: 1.01rem;
   color: var(--text-secondary);
 }
 
 .albumList {
   display: flex;
   flex-direction: column;
-  gap: clamp(32px, 5vw, 56px);
+  gap: clamp(24px, 3.5vw, 36px);
 }
 
 .albumRow {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: clamp(24px, 4vw, 48px);
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(22px, 4vw, 44px);
   align-items: center;
-  padding-bottom: clamp(32px, 5vw, 56px);
-  border-bottom: 1px solid var(--border-subtle);
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: var(--radius-xl);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--transition-bouncy),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
-.albumRow:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.albumRow:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-pink);
+  box-shadow: var(--shadow-hover);
 }
 
 .coverWrap {
@@ -45,42 +58,57 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   background-color: var(--bg-surface);
-  box-shadow: var(--shadow-soft);
+}
+
+.washiTape {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  z-index: 2;
+  width: 66px;
+  height: 18px;
+  border-radius: 4px;
+  background-color: rgba(247, 214, 223, 0.88);
+  transform: rotate(-6deg);
 }
 
 .coverImage {
   object-fit: cover;
-  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 520ms var(--ease-smooth);
 }
 
 .albumRow:hover .coverImage {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .info {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .year {
-  font-size: 0.82rem;
-  color: var(--accent);
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background-color: var(--bg-blush-soft);
+  font-size: 0.78rem;
+  color: var(--accent-cherry);
+  font-weight: 600;
 }
 
 .albumTitle {
-  font-size: clamp(1.85rem, 3vw, 2.4rem);
+  font-size: clamp(1.85rem, 3vw, 2.35rem);
   transition: color var(--transition-fast);
 }
 
 .albumRow:hover .albumTitle {
-  color: var(--accent);
+  color: var(--accent-cherry);
 }
 
 .story {
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
 }
 
@@ -88,9 +116,9 @@
   margin-top: 6px;
   display: flex;
   flex-wrap: wrap;
-  gap: 14px 22px;
+  gap: 12px 20px;
   font-size: 0.84rem;
-  color: var(--text-muted);
+  color: var(--accent-rose);
 }
 
 .meta span {
@@ -103,19 +131,27 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--accent-cherry);
+  padding: 7px 14px;
+  border-radius: 999px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   margin-bottom: 24px;
-  transition: color var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-bouncy);
 }
 
 .backLink:hover {
-  color: var(--accent);
+  background-color: var(--bg-blush-soft);
+  transform: translateX(-3px);
 }
 
 .albumDetailHeader {
   max-width: 68ch;
-  margin-bottom: clamp(32px, 5vw, 52px);
+  margin-bottom: clamp(28px, 4.5vw, 46px);
 }
 
 @media (max-width: 820px) {

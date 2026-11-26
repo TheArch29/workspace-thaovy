@@ -1,118 +1,161 @@
 .page {
-  padding: clamp(44px, 6vw, 80px) 0 24px;
+  padding: clamp(40px, 6vw, 76px) 0 24px;
 }
 
 .introGrid {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
-  gap: clamp(28px, 5vw, 68px);
-  align-items: start;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: var(--radius-xl);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.portraitCard {
+  padding: 12px 12px 18px;
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-pink);
+  box-shadow: var(--shadow-card);
 }
 
 .portraitWrap {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   overflow: hidden;
   background-color: var(--bg-surface);
-  box-shadow: var(--shadow-soft);
 }
 
 .portrait {
   object-fit: cover;
 }
 
+.portraitCaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--accent-cherry);
+}
+
+.bow {
+  color: var(--accent-rose);
+}
+
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .title {
-  font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+  font-size: clamp(2.35rem, 4.5vw, 3.45rem);
 }
 
 .subtitle {
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
 }
 
 .bio {
-  margin-top: 8px;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  font-size: 1.02rem;
+  gap: 14px;
+  font-size: 1rem;
   color: var(--text-secondary);
 }
 
 .ctaRow {
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .section {
-  margin-top: clamp(56px, 8vw, 96px);
-  padding-top: clamp(40px, 6vw, 64px);
+  margin-top: clamp(48px, 7vw, 80px);
+  padding-top: clamp(36px, 5vw, 56px);
   border-top: 1px solid var(--border-subtle);
 }
 
 .sectionTitle {
   margin-top: 8px;
-  margin-bottom: 28px;
-  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  margin-bottom: 26px;
+  font-size: clamp(1.9rem, 3.4vw, 2.55rem);
 }
 
 .collabGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 18px;
 }
 
 .collabCard {
-  padding: 26px;
-  border-radius: var(--radius-md);
-  background-color: var(--bg-surface);
+  height: 100%;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--transition-bouncy),
+    border-color var(--transition-fast);
+}
+
+.collabCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-pink);
 }
 
 .collabTitle {
   font-size: 1.45rem;
   margin-bottom: 10px;
+  color: var(--accent-cherry);
 }
 
 .collabDesc {
-  font-size: 0.94rem;
+  font-size: 0.93rem;
   color: var(--text-secondary);
 }
 
 .socialList {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--border-subtle);
+  gap: 12px;
 }
 
 .socialRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border-subtle);
-  transition: padding-left var(--transition-fast);
+  gap: 20px;
+  padding: 20px 24px;
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--transition-bouncy),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
 }
 
 .socialRow:hover {
-  padding-left: 8px;
+  transform: translateX(4px);
+  border-color: var(--border-pink);
+  background-color: var(--bg-blush-soft);
 }
 
 .socialName {
-  font-size: 1.45rem;
+  font-size: 1.42rem;
   transition: color var(--transition-fast);
 }
 
 .socialRow:hover .socialName {
-  color: var(--accent);
+  color: var(--accent-cherry);
 }
 
 .socialDesc {
@@ -127,7 +170,7 @@
   gap: 6px;
   font-size: 0.92rem;
   font-weight: 500;
-  color: var(--accent);
+  color: var(--accent-cherry);
   white-space: nowrap;
 }
 

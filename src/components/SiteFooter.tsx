@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { CuteHeart } from "@/components/MotionPrimitives";
 import { siteConfig } from "@/config/site";
 import styles from "./SiteFooter.module.css";
 
@@ -23,7 +24,7 @@ export function SiteFooter() {
         </div>
 
         <div className={styles.linksCol}>
-          <p className={styles.colTitle}>Khám phá</p>
+          <p className={styles.colTitle}>Góc nhỏ</p>
           <ul className={styles.list}>
             {siteConfig.navLinks.map((item) => (
               <li key={item.href}>
@@ -36,7 +37,7 @@ export function SiteFooter() {
         </div>
 
         <div className={styles.linksCol}>
-          <p className={styles.colTitle}>Mạng xã hội</p>
+          <p className={styles.colTitle}>Social Channels</p>
           <ul className={styles.list}>
             {siteConfig.socials.map((social) => (
               <li key={social.id}>
@@ -56,11 +57,11 @@ export function SiteFooter() {
       </div>
 
       <div className={`container ${styles.bottom}`}>
-        <p>
-          © {new Date().getFullYear()} {siteConfig.fullName}. Giữ trọn bản quyền hình ảnh &amp; nội
-          dung.
+        <p className={styles.copyright}>
+          © {new Date().getFullYear()} {siteConfig.fullName} · made with{" "}
+          <CuteHeart size={13} className={styles.heart} /> &amp; soft light.
         </p>
-        <p>Personal Brand Portfolio · Next.js &amp; MDX</p>
+        <p>Personal Portfolio · Warm Cream &amp; Cherry Edition</p>
       </div>
     </footer>
   );

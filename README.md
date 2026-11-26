@@ -1,20 +1,27 @@
 # Thảo Vy — Personal Branding Portfolio, Photography & Blog
 
-Website Portfolio thương hiệu cá nhân được xây dựng với **Next.js (App Router + TypeScript)**, **MDX** cho Blog & Đời sống, và **Vanilla CSS / CSS Modules** với thiết kế phong cách tạp chí (editorial).
+Website Portfolio thương hiệu cá nhân theo phong cách **Creative Scrapbook & Editorial** (tông màu Kem ấm, Hồng phấn và Đỏ Cherry Burgundy), được xây dựng bằng **Next.js (App Router + TypeScript)**, **MDX**, **Framer Motion** và **Vanilla CSS / CSS Modules**.
 
-## Tính năng đã thiết lập sẵn
+## Tính năng & Hiệu ứng nổi bật
 
-- **Trang chủ thương hiệu cá nhân (`/`)**: Hero chân dung & giới thiệu bản thân, bộ ảnh nổi bật, bài viết blog mới nhất và khu vực kết nối mạng xã hội / hợp tác.
-- **Portfolio Bộ ảnh (`/gallery` & `/gallery/[slug]`)**: Quản lý theo từng album, hiển thị thông số máy ảnh/phim và trình xem ảnh phóng to (**Photo Lightbox**) hỗ trợ phím mũi tên và `Esc`.
-- **Blog & Đời sống (`/blog` & `/blog/[slug]`)**: Viết bài bằng file Markdown/MDX trong `content/blog/`, tự động hiển thị danh mục, ngày đăng và thời gian đọc.
-- **Trang Giới thiệu & Hợp tác (`/about`)**: Câu chuyện cá nhân, các hạng mục hợp tác thương hiệu và danh sách toàn bộ mạng xã hội.
-- **Môi trường tự động (`.agents/environment.json`)**: Tự động cài đặt dependencies bằng `npm ci --no-audit --no-fund` khi mở phiên làm việc mới.
+- **Bảng màu & Thẩm mỹ cá nhân**: Nền kem ấm (`#F6EFE7`), thẻ trắng bo tròn, điểm nhấn hồng phấn (`#F7D6DF`) và đỏ cherry burgundy (`#841821`), kết hợp font serif (`Cormorant Garamond`), chữ viết tay tiếng Việt (`Dancing Script`) và sans-serif (`Be Vietnam Pro`).
+- **Chi tiết Scrapbook dễ thương**: Kẹp giấy gắn ảnh hero, khung ảnh cửa sổ mini (`about-me.studio`), băng dính washi hồng trên thẻ album Polaroid, nơ mảnh và dấu sao lấp lánh nhẹ nhàng.
+- **Animation mượt mà (`framer-motion`)**:
+  - Scroll animation fade-up & stagger cho từng khối nội dung (`ScrollReveal`, `StaggerGroup`).
+  - Hiệu ứng chuyển trang mượt (`src/app/template.tsx`).
+  - Nút bấm, thẻ album và thẻ mạng xã hội có micro-animation đàn hồi nhẹ, tự động tôn trọng `prefers-reduced-motion`.
+- **Cấu trúc đầy đủ**:
+  - **Trang chủ (`/`)**: Hero Scrapbook, Thông tin cá nhân (`#about`), Mong muốn & Định hướng phát triển (`#vision`), Phong cách của bản thân (`#style`), Các kênh Social (`#social`), Album ảnh Polaroid (`#albums`), Blog & Đời sống (`#blog`) và Banner Cherry Burgundy.
+  - **Bộ ảnh (`/gallery` & `/gallery/[slug]`)**: Album ảnh + trình xem phóng to **Photo Lightbox** hỗ trợ phím `←`, `→`, `Esc`.
+  - **Blog & Đời sống (`/blog` & `/blog/[slug]`)**: Quản lý bài viết bằng file `.mdx` trong `content/blog/`.
+  - **Trang giới thiệu (`/about`)**: Chi tiết câu chuyện cá nhân, hợp tác và các kênh mạng xã hội.
+- **Tự động thiết lập môi trường trên `main`**: File `.agents/environment.json` chạy `npm ci --no-audit --no-fund` mỗi khi mở phiên cloud mới.
 
 ## Các lệnh phát triển
 
 ```bash
-npm run dev          # Khởi chạy server phát triển (http://localhost:3000)
-npm run build        # Build bản production để kiểm tra toàn bộ route
+npm run dev          # Khởi chạy server phát triển
+npm run build        # Build bản production
 npm run lint         # Kiểm tra lỗi ESLint
 npm run typecheck    # Kiểm tra kiểu dữ liệu TypeScript
 npm run format       # Định dạng code bằng Prettier
@@ -22,21 +29,6 @@ npm run format       # Định dạng code bằng Prettier
 
 ## Hướng dẫn cập nhật nội dung cá nhân
 
-1. **Thông tin thương hiệu & link mạng xã hội**: Chỉnh sửa trực tiếp file `src/config/site.ts` (tên, mô tả, email, Instagram, TikTok, YouTube, Facebook, Threads, dịch vụ hợp tác).
-2. **Thêm bộ ảnh mới**:
-   - Đưa ảnh vào thư mục `public/images/`.
-   - Thêm album mới vào mảng `photoAlbums` trong `src/data/albums.ts`.
-3. **Viết bài Blog / Đời sống mới**:
-   - Tạo file `.mdx` mới trong thư mục `content/blog/` (ví dụ: `content/blog/bai-viet-moi.mdx`) với phần frontmatter:
-     ```markdown
-     ---
-     title: "Tiêu đề bài viết"
-     date: "2026-11-26"
-     category: "Đời sống"
-     excerpt: "Mô tả ngắn gọn về bài viết."
-     coverImage: "/images/album-saigon-morning.jpg"
-     readingTime: "4 phút đọc"
-     ---
-
-     Nội dung bài viết bằng Markdown/MDX...
-     ```
+1. **Thông tin cá nhân, mong muốn, định hướng, phong cách & link Social**: chỉnh sửa tập trung trong `src/config/site.ts`.
+2. **Thay/thêm bộ ảnh của bạn**: đưa ảnh vào `public/images/` và cập nhật mảng `photoAlbums` trong `src/data/albums.ts`.
+3. **Viết bài Blog mới**: thêm file `.mdx` vào `content/blog/` theo mẫu trong `content/blog/slow-morning-saigon.mdx`.

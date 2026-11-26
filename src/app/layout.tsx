@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro, Cormorant_Garamond } from "next/font/google";
+import { Be_Vietnam_Pro, Cormorant_Garamond, Dancing_Script } from "next/font/google";
+import { MotionProvider } from "@/components/MotionPrimitives";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { siteConfig } from "@/config/site";
@@ -20,6 +21,13 @@ const beVietnam = Be_Vietnam_Pro({
   display: "swap",
 });
 
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing",
+  subsets: ["latin", "vietnamese"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: `${siteConfig.brandName} — ${siteConfig.tagline}`,
@@ -36,11 +44,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="vi" className={`${cormorant.variable} ${beVietnam.variable}`}>
+    <html
+      lang="vi"
+      className={`${cormorant.variable} ${beVietnam.variable} ${dancingScript.variable}`}
+    >
       <body>
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+        <MotionProvider>
+          <SiteHeader />
+          <main>{children}</main>
+          <SiteFooter />
+        </MotionProvider>
       </body>
     </html>
   );
