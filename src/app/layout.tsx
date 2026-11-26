@@ -49,6 +49,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${cormorant.variable} ${beVietnam.variable} ${dancingScript.variable}`}
     >
       <body>
+        {/* Không có JavaScript thì animation không chạy: hiện ngay mọi khối đang ẩn chờ hiệu ứng */}
+        <noscript>
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <MotionProvider>
           <SiteHeader />
           <main>{children}</main>

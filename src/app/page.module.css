@@ -140,11 +140,13 @@
 
 .polaroidFooter {
   margin-top: 14px;
-  padding: 0 6px;
+  /* Chừa chỗ bên trái cho ảnh nhỏ (miniPolaroid) để chú thích không bị che */
+  padding: 0 6px 0 150px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: flex-end;
+  gap: 6px 10px;
 }
 
 .polaroidScript {
@@ -964,6 +966,10 @@
   .miniPolaroid {
     width: 124px;
     left: 0;
+  }
+
+  .polaroidFooter {
+    padding-left: 112px;
   }
 
   .scrapbookStage {
